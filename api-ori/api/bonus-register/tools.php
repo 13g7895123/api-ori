@@ -30,6 +30,6 @@ class tool
     }
 }
 
-echo 123;
+echo tool::sms();
 
 ?>
