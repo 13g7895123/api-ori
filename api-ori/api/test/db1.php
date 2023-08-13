@@ -1,7 +1,4 @@
 <?php
-
-echo 123;
-
 include_once(__DIR__ . '/../../__Class/ClassLoad.php');
 
 MYPDO::$host = '139.162.15.125';
