@@ -11,7 +11,7 @@ class tool
         // parameters
         $data = 'username=0903706726';
         $data .= '&password=germit0035';
-        $data .= '&dstaddr=0900000000';
+        $data .= '&dstaddr=0903706726';
         $data .= '&smbody=簡訊SmSend測試';
         // 設定curl網址
         curl_setopt($curl, CURLOPT_URL, $url);
