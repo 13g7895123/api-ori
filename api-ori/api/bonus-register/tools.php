@@ -57,7 +57,7 @@ class tool
     }
 }
 
-// tool::omgms();
-tool::test();
+tool::omgms();
+// tool::test();
 
 ?>
