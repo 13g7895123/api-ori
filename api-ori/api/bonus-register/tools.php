@@ -2,7 +2,29 @@
 
 class tool
 {
-    public static function sms()
+    // 歐買尬
+    public static function omgms()
+    {
+        $url = 'https://sms.mitake.com.tw/b2c/mtk/SmSend';
+        $data = array(
+            'Destination' => '0903706726',
+            'SmsBody' => 'test',
+            'SmsType'  => 'OTP',
+            // 'SmsType'  => 'SYSTEM',
+        );
+        $curl = curl_init();
+        curl_setopt($curl, CURLOPT_URL, $url);
+        curl_setopt($curl, CURLOPT_POST, 1);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
+
+        // 執⾏
+        $output = curl_exec($curl);
+        curl_close($curl);
+        echo $output;
+    }
+
+    // 三竹
+    public static function mitake()
     {
         $curl = curl_init();
         // url
@@ -30,6 +52,6 @@ class tool
     }
 }
 
-echo tool::sms();
+echo tool::omgms();
 
 ?>
