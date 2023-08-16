@@ -50,8 +50,14 @@ class tool
         curl_close($curl);
         echo $output;
     }
+
+    public static function test()
+    {
+        echo 'test123';
+    }
 }
 
-echo tool::omgms();
+// tool::omgms();
+tool::test();
 
 ?>
