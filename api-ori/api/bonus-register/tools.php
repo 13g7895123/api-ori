@@ -5,7 +5,8 @@ class tool
     // 歐買尬
     public static function omgms()
     {
-        $api_token = base64_encode('90339cff-6d61-4b85-a123-b03a090635ef');
+        // $api_token = base64_encode('90339cff-6d61-4b85-a123-b03a090635ef');
+        $api_token = '90339cff-6d61-4b85-a123-b03a090635ef';
         $url = 'https://api.omgms.com.tw ';
         $data = array(
             'Destination' => '0903706726',
@@ -15,9 +16,11 @@ class tool
         );
         
         $curl = curl_init();
-        curl_setopt($curl, CURLOPT_HTTPHEADER, array(
-            'Auth: ' . $api_token
-        ));
+        $header = array();
+        $header[] = 'Content-type: application/x-www-form-urlencoded';
+        $header[] = 'Authorization: Base64 '.$api_token;
+
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $header);
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_POST, 1);
         curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
