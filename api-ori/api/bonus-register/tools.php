@@ -5,9 +5,9 @@ class tool
     // 歐買尬
     public static function omgms()
     {
-        // $api_token = base64_encode('90339cff-6d61-4b85-a123-b03a090635ef');
-        $api_token = '90339cff-6d61-4b85-a123-b03a090635ef';
-        $url = 'https://api.omgms.com.tw/api/sms/Single ';
+        $api_token = base64_encode('90339cff-6d61-4b85-a123-b03a090635ef');
+        // $api_token = '90339cff-6d61-4b85-a123-b03a090635ef';
+        $url = 'https://api.omgms.com.tw ';
         $data = array(
             'Destination' => '0903706726',
             'SmsBody' => 'test',
@@ -18,7 +18,7 @@ class tool
         $curl = curl_init();
         $header = array();
         $header[] = 'Content-type: application/x-www-form-urlencoded';
-        $header[] = 'Auth: '.$api_token;
+        $header[] = 'Authorization: '.$api_token;
 
         curl_setopt($curl, CURLOPT_HTTPHEADER, $header);
         curl_setopt($curl, CURLOPT_URL, $url);
