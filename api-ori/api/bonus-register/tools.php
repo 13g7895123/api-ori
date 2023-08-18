@@ -10,8 +10,8 @@ class tool
         $data = array(
             'Destination' => '0903706726',
             'SmsBody' => 'test',
-            'SmsType'  => 'OTP',
-            // 'SmsType'  => 'SYSTEM',
+            // 'SmsType'  => 'OTP',
+            'SmsType'  => 'SYSTEM',
         );
         
         $curl = curl_init();
