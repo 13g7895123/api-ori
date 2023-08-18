@@ -5,14 +5,19 @@ class tool
     // 歐買尬
     public static function omgms()
     {
-        $url = 'https://sms.mitake.com.tw/b2c/mtk/SmSend';
+        $api_token = base64_encode('90339cff-6d61-4b85-a123-b03a090635ef');
+        $url = 'https://api.omgms.com.tw ';
         $data = array(
             'Destination' => '0903706726',
             'SmsBody' => 'test',
             'SmsType'  => 'OTP',
             // 'SmsType'  => 'SYSTEM',
         );
+        
         $curl = curl_init();
+        curl_setopt($curl, CURLOPT_HTTPHEADER, array(
+            'Auth: ' . $api_token
+        ));
         curl_setopt($curl, CURLOPT_URL, $url);
         curl_setopt($curl, CURLOPT_POST, 1);
         curl_setopt($curl, CURLOPT_POSTFIELDS, http_build_query($data));
