@@ -18,7 +18,7 @@ class tool
         $curl = curl_init();
         $header = array();
         $header[] = 'Content-type: application/x-www-form-urlencoded';
-        $header[] = 'Authorization: '.$api_token;
+        $header[] = 'Auth: '.$api_token;
 
         curl_setopt($curl, CURLOPT_HTTPHEADER, $header);
         curl_setopt($curl, CURLOPT_URL, $url);
