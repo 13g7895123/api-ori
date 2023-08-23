@@ -77,6 +77,7 @@ class tools
             $random_str = $chars[ rand( 0, $char_length - 1 ) ];
             $return_str .= $random_str;
         }     
+        return $return_str;
     }
 
     public static function test()
