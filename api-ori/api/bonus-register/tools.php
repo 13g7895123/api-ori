@@ -1,16 +1,20 @@
 <?php
 
-class tool
+class tools
 {
-    // 歐買尬
-    public static function omgms()
+    // 簡訊-歐買尬
+    public static function omgms($phone = null, $msg = null)
     {
+        // 測試資料
+        $phone = '0903706726';
+        $msg = '【遊戲帳號註冊】您的驗證碼為「1234」，10分鐘內有效；驗證碼提供給他人可能導致帳號被盜，請勿泄露，謹防被騙。';
+
         $api_token = base64_encode('90339cff-6d61-4b85-a123-b03a090635ef');
         // $api_token = '90339cff-6d61-4b85-a123-b03a090635ef';
         $url = 'https://api.omgms.com.tw/api/sms/Single ';
         $data = array(
-            'Destination' => '0903706726',
-            'SmsBody' => 'test',
+            'Destination' => $phone,
+            'SmsBody' => $msg,
             // 'SmsType'  => 'OTP',
             'SmsType'  => 'SYSTEM',
         );
@@ -31,7 +35,7 @@ class tool
         echo $output;
     }
 
-    // 三竹
+    // 簡訊-三竹(需要公司行號才可使用)
     public static function mitake()
     {
         $curl = curl_init();
@@ -59,13 +63,29 @@ class tool
         echo $output;
     }
 
+    // 隨機字串
+    public static function validation_code($length = 4, $type = 0){
+        
+        if ($type == 0){
+            $chars = '0123456789';
+        }elseif ($type == 1){   // 數字 + 英文大小寫
+            $chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        }
+        $char_length = strlen($chars);
+        $return_str = '';
+        for ($i = 0; $i < $length; $i++){
+            $random_str = $chars[ rand( 0, $char_length - 1 ) ];
+            $return_str .= $random_str;
+        }     
+    }
+
     public static function test()
     {
         echo 'test123';
     }
 }
 
-tool::omgms();
+echo tools::validation_code();
 // tool::test();
 
 ?>
