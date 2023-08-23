@@ -85,7 +85,7 @@ class tools
     }
 }
 
-echo tools::validation_code();
+echo tools::test();
 // tool::test();
 
 ?>
