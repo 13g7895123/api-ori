@@ -9,7 +9,7 @@ class tools
         $phone = '0903706726';
         $msg = '【遊戲帳號註冊】您的驗證碼為「1234」，10分鐘內有效；驗證碼提供給他人可能導致帳號被盜，請勿泄露，謹防被騙。';
 
-        $api_token = base64_encode('90339cff-6d61-4b85-a123-b03a090635ef');
+        $api_token = base64_encode('90339cff-6d61-4b85-a123-b03a090635ef:'.time());
         // $api_token = '90339cff-6d61-4b85-a123-b03a090635ef';
         $url = 'https://api.omgms.com.tw/api/sms/Single ';
         $data = array(
