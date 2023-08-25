@@ -1,16 +1,16 @@
 <?php
 include_once(__DIR__ . '/../../__Class/ClassLoad.php');
-
+include_once(__DIR__ . './tools.php');
 
 if (isset($_GET['action'])){
     switch($_GET['action']){
         case 'sendCode':
             if (isset($_POST['phone'])){
 
-                MYPDO::$table = 'phone';
+                MYPDO::$table = 'phone_validation';
                 MYPDO::$data = [
                     'phone' => $_POST['phone'],
-                    'code' => $code
+                    'validation_code' => tools::validation_code();
                 ];
                 $insertId = MYPDO::insert();
             
