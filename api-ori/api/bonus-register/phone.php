@@ -7,6 +7,11 @@ if (isset($_GET['action'])){
         case 'sendCode':
             if (isset($_POST['phone'])){
 
+                $phone = $_POST['phone'];
+                $validation_code = tools::validation_code();
+                $msg = "【遊戲帳號註冊】您的驗證碼為「".$validation_code."」，10分鐘內有效；驗證碼提供給他人可能導致帳號被盜，請勿泄露，謹防被騙。";
+                tools::omgms($phone, $msg)
+
                 MYPDO::$table = 'phone_validation';
                 MYPDO::$data = [
                     'phone' => $_POST['phone'],
