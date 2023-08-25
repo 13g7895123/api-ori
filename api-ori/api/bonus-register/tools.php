@@ -86,7 +86,7 @@ class tools
     }
 }
 
-echo tools::omgms();
+// echo tools::omgms();
 // echo tools::validation_code();
 // tool::test();
 
