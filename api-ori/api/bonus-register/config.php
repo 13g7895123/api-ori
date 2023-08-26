@@ -11,7 +11,7 @@ MYPDO::$user = 'bonus_register_remote';
 MYPDO::$pwd = '820820';
 
 // CORS
-$url_arr = ['http://170.187.229.132:9054'];
+$url_arr = ['http://170.187.229.132:9054/'];
 $http_origin = $_SERVER['HTTP_ORIGIN'];
 
 if (in_array($http_origin, $url_arr)){
