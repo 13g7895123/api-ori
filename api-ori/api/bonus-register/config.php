@@ -19,5 +19,6 @@ if (in_array($http_origin, $url_arr)){
 }
 
 header('Access-Control-Allow-Headers: Content-Type');
+header('Access-Control-Allow-Headers: Auth');
 
 ?>
