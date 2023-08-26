@@ -31,7 +31,7 @@ class tools
         // 執⾏
         $output = curl_exec($curl);
         curl_close($curl);
-        echo $output;
+        return $output;
     }
 
     // 簡訊-三竹(需要公司行號才可使用)
