@@ -20,7 +20,10 @@ if (isset($_GET['action'])){
 
                 echo '0: '.$sms_result;
                 echo '/ 1: '.gettype($sms_result);
-                echo '/ 2: '.$sms_result['Result'];
+                echo '/ 2: '.$sms_result['Result']['Destination'];
+                echo '/ 3: '.$sms_result['Result']['Status'];
+                echo '/ 4: '.$sms_result['Result']['Desc'];
+                echo '/ 5: '.$sms_result['Result']['MessageId'];
 
                 // =====驗證簡訊是否傳送成功=====
                 if ($sms_result['StatusCode']){     // 回傳狀態碼成功
