@@ -25,10 +25,10 @@ if (isset($_GET['action'])){
                     MYPDO::$data = [
                         'phone' => $phone,
                         'validation_code' => $validation_code,
-                        'destination' => $sms_result['Result']['destination'],
-                        'status' => $sms_result['Result']['status'],
-                        'desc' => $sms_result['Result']['desc'],
-                        'messageId' => $sms_result['Result']['messageId'],
+                        'destination' => $sms_result['Result']['Destination'],
+                        'status' => $sms_result['Result']['Status'],
+                        'desc' => $sms_result['Result']['Desc'],
+                        'messageId' => $sms_result['Result']['MessageId'],
                     ];
                     $insertId = MYPDO::insert();
                     
