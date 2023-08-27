@@ -10,6 +10,10 @@ if (isset($_GET['action'])){
 
                 // 發送驗證碼
                 $phone = $_POST['phone'];
+
+                echo $phone;
+                die();
+
                 $validation_code = tools::validation_code();
                 $msg = "【遊戲帳號註冊】您的驗證碼為「".$validation_code."」，10分鐘內有效；驗證碼提供給他人可能導致帳號被盜，請勿泄露，謹防被騙。";
                 $sms_result = tools::omgms($phone, $msg);
