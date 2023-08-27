@@ -8,7 +8,7 @@ if (isset($_GET['action'])){
         case 'sendCode':
             // 取得 POST DATA
             $json_data = file_get_contents('php://input');  // string
-            $post_data = json_decode($json_data, true);          // string轉array
+            $post_data = json_decode($json_data, true);     // string轉array
 
             if (isset($post_data['phone'])){
                 // 發送驗證碼
@@ -52,6 +52,43 @@ if (isset($_GET['action'])){
             echo json_encode($return);
             break;
         case 'varify_validation_code':
+            // 取得 POST DATA
+            $json_data = file_get_contents('php://input');  // string
+            $post_data = json_decode($json_data, true);     // string轉array
+
+            if (isset($post_data['phone']) && isset($post_data['code'])){
+
+                $phone = $post_data['phone'];
+                $code = $post_data['code'];
+
+                MYPDO::$table = 'phone_validation';
+                MYPDO::$where = [
+                    'phone' => $phone,
+                    'validation_code' => $code
+                ];
+                $result = MYPDO::first();
+
+                if (!empty($result)){   // 該資料存在，通過驗證
+                    MYPDO::$table = 'phone_validation';
+                    MYPDO::$data = ['result' => 1];
+                    MYPDO::$where = [
+                        'phone' => $phone,
+                        'validation_code' => $code
+                    ];
+                    $update_id = MYPDO::save();
+
+                    if ($update_id > 0){
+                        $return['success'] = true;
+                        $return['msg'] = '驗證成功';
+                    }else{
+                        $return['success'] = false;
+                        $return['msg'] = '驗證失敗';
+                    }
+                }else{
+                    $return['success'] = false;
+                    $return['msg'] = '資料不存在';
+                }
+            }
             break;
     }
 }
