@@ -6,7 +6,11 @@ include_once(__DIR__ . '/../../__Class/ClassLoad.php');
 if (isset($_GET['action'])){
     switch($_GET['action']){
         case 'sendCode':
-            echo json_encode($_POST);
+
+            $json_data = file_get_contents('php://input');  // string
+            $data = json_decode($json_data, true);          // string轉array
+
+            echo $data;
             if (isset($_POST['phone'])){
 
                 // 發送驗證碼
