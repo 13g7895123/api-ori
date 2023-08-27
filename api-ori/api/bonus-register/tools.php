@@ -5,10 +5,6 @@ class tools
     // 簡訊-歐買尬
     public static function omgms($phone = null, $msg = null)
     {
-        // 測試資料
-        // $phone = '0903706726';
-        // $msg = '【遊戲帳號註冊】您的驗證碼為「1234」，10分鐘內有效；驗證碼提供給他人可能導致帳號被盜，請勿泄露，謹防被騙。';
-
         $api_token = base64_encode('90339cff-6d61-4b85-a123-b03a090635ef:'.time());
         $url = 'https://api.omgms.com.tw/api/sms/Single ';
         $data = array(
@@ -31,7 +27,9 @@ class tools
         // 執⾏
         $output = curl_exec($curl);
         curl_close($curl);
-        return $output;
+        // return $output;
+
+        echo $output;
     }
 
     // 簡訊-三竹(需要公司行號才可使用)
