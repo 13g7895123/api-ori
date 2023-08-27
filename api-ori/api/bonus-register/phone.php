@@ -56,8 +56,14 @@ if (isset($_GET['action'])){
             // 取得 POST DATA
             $json_data = file_get_contents('php://input');  // string
             $post_data = json_decode($json_data, true);     // string轉array
-
-            echo $post_data['phone'];
+            
+            if (isset($post_data['phone'])){
+                echo $post_data['phone'];
+            }
+            if (isset($post_data['code'])){
+                echo $post_data['code'];
+            }
+            
 
             if (isset($post_data['phone']) && isset($post_data['code'])){
 
