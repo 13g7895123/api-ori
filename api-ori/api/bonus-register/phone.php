@@ -69,38 +69,36 @@ if (isset($_GET['action'])){
                 ];
                 $result = MYPDO::first();
 
-                $return['test'] = $result['validation_code_create_at_timestamp'];
+                if (!empty($result)){   // 該資料存在，驗證時間
 
-                // if (!empty($result)){   // 該資料存在，驗證時間
+                    $timestamp = $result['validation_code_create_at_timestamp'];
+                    $time_diff = time() - $timestamp;
+                    $valid_minute = 1;
 
-                //     $timestamp = $result['validation_code_create_at_timestamp'];
-                //     $time_diff = $time() - $timestamp;
-                //     $valid_minute = 1;
+                    if ($time_diff > ($valid_minute * 60)){   // 驗證碼超過有效時限
+                        $return['success'] = false;
+                        $return['msg'] = '驗證碼已失效';
+                    }else{
+                        MYPDO::$table = 'phone_validation';
+                        MYPDO::$data = ['result' => 1];
+                        MYPDO::$where = [
+                            'phone' => $phone,
+                            'validation_code' => $code
+                        ];
+                        $update_id = MYPDO::save();
 
-                //     if ($time_diff > ($valid_minute * 60)){   // 驗證碼超過有效時限
-                //         $return['success'] = false;
-                //         $return['msg'] = '驗證碼已失效';
-                //     }else{
-                //         MYPDO::$table = 'phone_validation';
-                //         MYPDO::$data = ['result' => 1];
-                //         MYPDO::$where = [
-                //             'phone' => $phone,
-                //             'validation_code' => $code
-                //         ];
-                //         $update_id = MYPDO::save();
-
-                //         if ($update_id > 0){
-                //             $return['success'] = true;
-                //             $return['msg'] = '驗證成功';
-                //         }else{
-                //             $return['success'] = false;
-                //             $return['msg'] = '驗證失敗';
-                //         }
-                //     }
-                // }else{
-                //     $return['success'] = false;
-                //     $return['msg'] = '資料不存在';
-                // }
+                        if ($update_id > 0){
+                            $return['success'] = true;
+                            $return['msg'] = '驗證成功';
+                        }else{
+                            $return['success'] = false;
+                            $return['msg'] = '驗證失敗';
+                        }
+                    }
+                }else{
+                    $return['success'] = false;
+                    $return['msg'] = '資料不存在';
+                }
             }
 
             echo json_encode($return);
