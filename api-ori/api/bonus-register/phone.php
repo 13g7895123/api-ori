@@ -61,7 +61,6 @@ if (isset($_GET['action'])){
 
                 $phone = $post_data['phone'];
                 $code = $post_data['code'];
-                echo 'do this';
 
                 MYPDO::$table = 'phone_validation';
                 MYPDO::$where = [
@@ -101,6 +100,8 @@ if (isset($_GET['action'])){
                     $return['msg'] = '資料不存在';
                 }
             }
+
+            echo json_encode($return);
             break;
     }
 }
