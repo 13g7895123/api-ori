@@ -17,10 +17,10 @@ if (isset($_GET['action'])){
                 $validation_code = tools::validation_code();
                 $msg = "【遊戲帳號註冊】您的驗證碼為「".$validation_code."」，10分鐘內有效；驗證碼提供給他人可能導致帳號被盜，請勿泄露，謹防被騙。";
                 $sms_result = tools::omgms($phone, $msg);
-                echo '0: '.$sms_result;
-                echo '/ 1: '.gettype($sms_result);
-                echo '/ 2: '.json_decode($sms_result);
-                echo '/ 3: '.$sms_result['Result']['MessageId'];
+                // echo '0: '.$sms_result;
+                // echo '/ 1: '.gettype($sms_result);
+                // echo '/ 2: '.json_decode($sms_result);
+                // echo '/ 3: '.$sms_result['Result']['MessageId'];
 
                 // =====驗證簡訊是否傳送成功=====
                 
