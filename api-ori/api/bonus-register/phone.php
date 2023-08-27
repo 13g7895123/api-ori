@@ -25,6 +25,7 @@ if (isset($_GET['action'])){
                     MYPDO::$data = [
                         'phone' => $phone,
                         'validation_code' => $validation_code,
+                        'validation_code_create_at_timestamp' => time(),
                         'destination' => $sms_result['Result']['Destination'],
                         'status' => $sms_result['Result']['Status'],
                         'desc' => $sms_result['Result']['Desc'],
@@ -35,7 +36,7 @@ if (isset($_GET['action'])){
                     // 確認寫入成功
                     if ($insertId > 0){
                         $return['success'] = true;
-                        $return['msg'] = '認證碼傳送成功';
+                        $return['msg'] = '認證碼已發送至手機';
                     }else{
                         $return['success'] = false;
                         $return['msg'] = 'API傳送有誤';
@@ -68,21 +69,31 @@ if (isset($_GET['action'])){
                 ];
                 $result = MYPDO::first();
 
-                if (!empty($result)){   // 該資料存在，通過驗證
-                    MYPDO::$table = 'phone_validation';
-                    MYPDO::$data = ['result' => 1];
-                    MYPDO::$where = [
-                        'phone' => $phone,
-                        'validation_code' => $code
-                    ];
-                    $update_id = MYPDO::save();
+                if (!empty($result)){   // 該資料存在，驗證時間
 
-                    if ($update_id > 0){
-                        $return['success'] = true;
-                        $return['msg'] = '驗證成功';
-                    }else{
+                    $timestamp = $result['validation_code_create_at_timestamp'];
+                    $time_diff = $time() - $timestamp;
+                    $valid_minute = 1;
+
+                    if ($time_diff > ($valid_minute * 60)){   // 驗證碼超過有效時限
                         $return['success'] = false;
-                        $return['msg'] = '驗證失敗';
+                        $return['msg'] = '驗證碼已失效';
+                    }else{
+                        MYPDO::$table = 'phone_validation';
+                        MYPDO::$data = ['result' => 1];
+                        MYPDO::$where = [
+                            'phone' => $phone,
+                            'validation_code' => $code
+                        ];
+                        $update_id = MYPDO::save();
+
+                        if ($update_id > 0){
+                            $return['success'] = true;
+                            $return['msg'] = '驗證成功';
+                        }else{
+                            $return['success'] = false;
+                            $return['msg'] = '驗證失敗';
+                        }
                     }
                 }else{
                     $return['success'] = false;
