@@ -69,7 +69,7 @@ if (isset($_GET['action'])){
                 ];
                 $result = MYPDO::first();
 
-                $return['test'] = $result;
+                $return['test'] = $result['validation_code_create_at_timestamp'];
 
                 // if (!empty($result)){   // 該資料存在，驗證時間
 
