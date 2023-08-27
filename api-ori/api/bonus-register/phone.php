@@ -1,23 +1,18 @@
 <?php
 include_once(__DIR__ . '/../../__Class/ClassLoad.php');
-// include_once('./config.php');
-// include_once('./tools.php');
+include_once('./config.php');
+include_once('./tools.php');
 
 if (isset($_GET['action'])){
     switch($_GET['action']){
         case 'sendCode':
-
+            // 取得 POST DATA
             $json_data = file_get_contents('php://input');  // string
-            $data = json_decode($json_data, true);          // string轉array
+            $post_data = json_decode($json_data, true);          // string轉array
 
-            echo $data['phone'];
-            if (isset($_POST['phone'])){
-
+            if (isset($post_data['phone'])){
                 // 發送驗證碼
-                $phone = $_POST['phone'];
-
-                echo $phone;
-                die();
+                $phone = $post_data['phone'];
 
                 $validation_code = tools::validation_code();
                 $msg = "【遊戲帳號註冊】您的驗證碼為「".$validation_code."」，10分鐘內有效；驗證碼提供給他人可能導致帳號被盜，請勿泄露，謹防被騙。";
