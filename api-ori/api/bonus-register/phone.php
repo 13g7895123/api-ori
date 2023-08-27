@@ -10,7 +10,7 @@ if (isset($_GET['action'])){
             $json_data = file_get_contents('php://input');  // string
             $data = json_decode($json_data, true);          // string轉array
 
-            echo $data;
+            echo $data['phone'];
             if (isset($_POST['phone'])){
 
                 // 發送驗證碼
