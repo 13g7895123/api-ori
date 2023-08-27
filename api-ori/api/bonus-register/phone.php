@@ -56,19 +56,12 @@ if (isset($_GET['action'])){
             // 取得 POST DATA
             $json_data = file_get_contents('php://input');  // string
             $post_data = json_decode($json_data, true);     // string轉array
-            
-            if (isset($post_data['phone'])){
-                echo $post_data['phone'];
-            }
-            if (isset($post_data['code'])){
-                echo $post_data['code'];
-            }
-            
-
+                      
             if (isset($post_data['phone']) && isset($post_data['code'])){
 
                 $phone = $post_data['phone'];
                 $code = $post_data['code'];
+                echo 'do this';
 
                 MYPDO::$table = 'phone_validation';
                 MYPDO::$where = [
