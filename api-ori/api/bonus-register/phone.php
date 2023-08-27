@@ -19,7 +19,8 @@ if (isset($_GET['action'])){
                 $sms_result = tools::omgms($phone, $msg);
                 echo '0: '.$sms_result;
                 echo '/ 1: '.gettype($sms_result);
-                // echo '/ 2: '.json_decode($sms_result);
+                echo '/ 2: '.json_decode($sms_result);
+                $sms_result = json_decode($sms_result);
                 echo '/ 3: '.$sms_result['Result']['MessageId'];
 
                 // =====驗證簡訊是否傳送成功=====
