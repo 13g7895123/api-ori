@@ -35,6 +35,7 @@ if (isset($_GET['action'])){
                     // 確認寫入成功
                     if ($insertId > 0){
                         $return['success'] = true;
+                        $return['msg'] = '認證碼傳送成功';
                     }else{
                         $return['success'] = false;
                         $return['msg'] = 'API傳送有誤';
