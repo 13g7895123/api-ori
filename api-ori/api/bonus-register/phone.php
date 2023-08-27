@@ -3,6 +3,8 @@ include_once(__DIR__ . '/../../__Class/ClassLoad.php');
 // include_once('./config.php');
 // include_once('./tools.php');
 
+echo $_GET['action'];
+
 if (isset($_GET['action'])){
     switch($_GET['action']){
         case 'sendCode':
