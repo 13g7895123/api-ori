@@ -18,6 +18,10 @@ if (isset($_GET['action'])){
                 $msg = "【遊戲帳號註冊】您的驗證碼為「".$validation_code."」，10分鐘內有效；驗證碼提供給他人可能導致帳號被盜，請勿泄露，謹防被騙。";
                 $sms_result = json_decode(tools::omgms($phone, $msg), true);
 
+                echo '0: '.$sms_result;
+                echo '/ 1: '.gettype($sms_result);
+                echo '/ 2: '.$sms_result['Result'];
+
                 // =====驗證簡訊是否傳送成功=====
                 if ($sms_result['StatusCode']){     // 回傳狀態碼成功
                     // 驗證資料存入DB
