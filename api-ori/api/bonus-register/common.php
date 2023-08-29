@@ -20,7 +20,7 @@ if (isset($_GET['action'])){
                 
                 MYPDO::$table = 'server';
                 MYPDO::$where = [
-                    'eng_nane' => $server,
+                    'eng_name' => $server,
                 ];
                 $result = MYPDO::first();
 
