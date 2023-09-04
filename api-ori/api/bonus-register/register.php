@@ -48,6 +48,8 @@ if (isset($_GET['action'])){
                     if ($insert_id > 0){
                         $return['success'] = true;
                         $return['msg'] = '註冊完成';
+                        $return['birthday'] = $birthday;
+                        $return['birthday_type'] = gettype($birthday);
                     }else{
                         $return['success'] = false;
                         $return['msg'] = '資料寫入有誤，請重新確認';
